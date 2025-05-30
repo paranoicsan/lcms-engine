@@ -106,7 +106,7 @@ module DocTemplate
         context_type: @opts[:context_type],
         data: parsed_tag.tag_data,
         materials: parsed_tag.materials,
-        optional: (parsed_tag.try(:optional?) || false),
+        optional: parsed_tag.try(:optional?) || false,
         placeholder: parsed_tag.placeholder,
         part_type: tag_name.to_s.underscore
       }

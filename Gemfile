@@ -18,11 +18,11 @@ gemspec
 
 gem 'lt-google-api', github: 'learningtapestry/lt-google-api',
                      branch: 'ruby-3-upgrade',
-                     ref: '3dd76b6'
+                     ref: '08cece7'
 
 gem 'lt-lcms', github: 'learningtapestry/lt-lcms',
                branch: 'ruby-3-upgrade',
-               ref: '9394667'
+               ref: 'a673e78'
 
 gem 'wicked_pdf', github: 'learningtapestry/wicked_pdf',
                   branch: 'puppeteer-support',

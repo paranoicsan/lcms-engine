@@ -7,6 +7,10 @@ module Lti
   class ThinCommonCartridge
     attr_reader :links
 
+    LTI_LINK_RESOURCE_TYPE = 'imsbasiclti_xmlv1p0'
+    MANIFEST_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'imsmanifest.xml'
+    LTI_LINK_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'lti_link.xml'
+
     def initialize(items)
       @items = Array.wrap items
       @xml = File.open(File.expand_path MANIFEST_FILEPATH) { |f| Nokogiri::XML(f) }
@@ -27,10 +31,6 @@ module Lti
     end
 
     private
-
-    LTI_LINK_RESOURCE_TYPE = 'imsbasiclti_xmlv1p0'
-    MANIFEST_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'imsmanifest.xml'
-    LTI_LINK_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'lti_link.xml'
 
     attr_reader :items, :link_template, :xml
 

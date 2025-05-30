@@ -11,7 +11,7 @@ module Lcms
 
       def initialize(params = {})
         parsed_change_log = parse_change_log params
-        super params.merge(change_log: parsed_change_log)
+        super(params.merge(change_log: parsed_change_log))
       end
 
       def save
