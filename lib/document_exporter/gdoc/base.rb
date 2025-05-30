@@ -79,11 +79,13 @@ module DocumentExporter
           upload_source: StringIO.new(content)
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
-        @id = if file_id.present?
-                drive_service.service.update_file(file_id, metadata, params)
-              else
-                drive_service.service.create_file(metadata, params)
-              end.id
+        @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
+          if file_id.present?
+            drive_service.service.update_file(file_id, metadata, params)
+          else
+            drive_service.service.create_file(metadata, params)
+          end.id
+        end
 
         post_processing
 
@@ -128,7 +130,7 @@ module DocumentExporter
 
       def gdoc_folder_tmp(material_ids)
         file_ids = material_ids.map do |id|
-          document.links['materials']&.dig(id.to_s)&.dig('gdoc')&.gsub(/.*id=/, '')
+          document.links['materials']&.dig(id.to_s, 'gdoc')&.gsub(/.*id=/, '')
         end
 
         @options[:subfolders] = [self.class::FOLDER_NAME]

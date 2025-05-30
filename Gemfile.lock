@@ -1,4 +1,24 @@
 GIT
+  remote: https://github.com/learningtapestry/lt-google-api.git
+  revision: 15cb66366742649e629ccddd7001cf7bd4ebc672
+  branch: google-api-update-0.16
+  specs:
+    lt-google-api (0.3.1)
+      google-apis-drive_v3 (~> 0.63.0)
+      googleauth (~> 1.11.2)
+
+GIT
+  remote: https://github.com/learningtapestry/lt-lcms.git
+  revision: f4403a3b6befef09baa4c678811c319c05375a88
+  branch: google-api-update-0.16
+  specs:
+    lt-lcms (0.6.1)
+      google-apis-core (~> 0.16.0)
+      httparty (~> 0.18)
+      nokogiri (~> 1.10, >= 1.10.8)
+      rubyzip (~> 2)
+
+GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
   revision: 964a0906c9284d97927322e4c1e474b1d68373cf
   ref: 964a090
@@ -36,15 +56,13 @@ PATH
       fog-aws (~> 3.5, >= 3.5.2)
       font-awesome-sass (~> 5.12)
       foundation-rails (~> 6.6.2, >= 6.6.1)
-      google-apis-drive_v3 (~> 0.46)
-      google-apis-script_v1 (~> 0.21)
+      google-apis-drive_v3 (~> 0.63.0)
+      google-apis-script_v1 (~> 0.27.0)
       hiredis (~> 0.6.3)
       httparty (~> 0.18)
       jbuilder (~> 2.10)
       jquery-rails (~> 4.3, >= 4.3.5)
       js-routes (~> 1.4, >= 1.4.9)
-      lt-google-api (~> 0.3)
-      lt-lcms (~> 0.6)
       migration_data (~> 0.6)
       mini_magick (~> 4.10, >= 4.10.1)
       nested_form (~> 0.3.2)
@@ -348,22 +366,21 @@ GEM
       raabro (~> 1.4)
     globalid (1.0.1)
       activesupport (>= 5.0)
-    google-apis-core (0.11.2)
+    google-apis-core (0.16.0)
       addressable (~> 2.5, >= 2.5.1)
-      googleauth (>= 0.16.2, < 2.a)
-      httpclient (>= 2.8.1, < 3.a)
+      googleauth (~> 1.9)
+      httpclient (>= 2.8.3, < 3.a)
       mini_mime (~> 1.0)
+      mutex_m
       representable (~> 3.0)
       retriable (>= 2.0, < 4.a)
-      rexml
-      webrick
-    google-apis-drive_v3 (0.46.0)
-      google-apis-core (>= 0.11.0, < 2.a)
-    google-apis-script_v1 (0.21.0)
-      google-apis-core (>= 0.11.0, < 2.a)
+    google-apis-drive_v3 (0.63.0)
+      google-apis-core (>= 0.15.0, < 2.a)
+    google-apis-script_v1 (0.27.0)
+      google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-env (2.1.0)
       faraday (>= 1.0, < 3.a)
-    googleauth (1.9.1)
+    googleauth (1.11.2)
       faraday (>= 1.0, < 3.a)
       google-cloud-env (~> 2.1)
       jwt (>= 1.4, < 3.0)
@@ -405,15 +422,6 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    lt-google-api (0.3.0)
-      google-apis-drive_v3 (~> 0.46)
-      googleauth (~> 1.9)
-    lt-lcms (0.6.0)
-      google-apis-core (~> 0.11, >= 0.11.1)
-      httparty (~> 0.18)
-      lt-google-api (~> 0.3)
-      nokogiri (~> 1.10, >= 1.10.8)
-      rubyzip (~> 2)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
@@ -432,6 +440,7 @@ GEM
     multi_xml (0.6.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    mutex_m (0.3.0)
     nested_form (0.3.2)
     netrc (0.11.0)
     nikkou (0.0.5)
@@ -701,7 +710,6 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    webrick (1.8.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -727,6 +735,8 @@ DEPENDENCIES
   factory_bot (~> 5)
   faker (~> 2.1)
   lcms-engine!
+  lt-google-api!
+  lt-lcms!
   overcommit (~> 0.57)
   pry-byebug (~> 3.7)
   pry-rails (~> 0.3.5)
@@ -745,4 +755,4 @@ DEPENDENCIES
   wicked_pdf!
 
 BUNDLED WITH
-   2.4.22
+   2.4.8
