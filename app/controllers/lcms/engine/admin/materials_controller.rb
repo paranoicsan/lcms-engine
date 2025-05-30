@@ -103,10 +103,10 @@ module Lcms
 
         def set_query_params
           @query_params = params[:query]
-            &.permit(
-              :course, :lesson, :name_date, :orientation, :search_term, :search_file_name, :sort_by, :title, :type,
-              :unit
-            ) || {}
+                            &.permit(
+                              :course, :lesson, :name_date, :orientation, :search_term, :search_file_name, :sort_by,
+                              :title, :type, :unit
+                            ) || {}
         end
       end
     end

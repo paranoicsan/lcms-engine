@@ -6,4 +6,4 @@ Elasticsearch::Model.client = Elasticsearch::Client.new(
   host: ENV.fetch('ELASTICSEARCH_ADDRESS', nil),
   adapter: :net_http
 )
-Hashie.logger = Logger.new('/dev/null')
+Hashie.logger = Logger.new(File::NULL)

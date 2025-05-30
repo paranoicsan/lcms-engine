@@ -7,11 +7,11 @@ module Lcms
       include Virtus.model
       include ActiveModel::Model
 
-      attribute :change_log, Array[Hash]
+      attribute :change_log, [Hash]
 
       def initialize(params = {})
         parsed_change_log = parse_change_log params
-        super params.merge(change_log: parsed_change_log)
+        super(params.merge(change_log: parsed_change_log))
       end
 
       def save

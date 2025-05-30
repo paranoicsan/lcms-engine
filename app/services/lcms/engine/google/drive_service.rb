@@ -15,15 +15,15 @@ module Lcms
         end
 
         def copy(file_ids, folder_id = parent)
-          super file_ids, folder_id
+          super
         end
 
         def create_folder(folder_name, parent_id = FOLDER_ID)
-          super folder_name, parent_id
+          super
         end
 
         def initialize(document, options)
-          super google_credentials
+          super(google_credentials)
           @document = document
           @options = options
         end

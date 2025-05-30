@@ -23,7 +23,7 @@ module DocTemplate
       class Section
         include Virtus.model
 
-        attribute :icons, Array[String], default: []
+        attribute :icons, [String], default: []
         attribute :materials, String
         attribute :metacognition, MetaCognition
         attribute :metadata, MetaData
@@ -40,13 +40,13 @@ module DocTemplate
         attribute :time, Integer, default: ->(s, _) { s.metadata.time }
         attribute :use_color, Boolean, default: false
 
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, [Integer], default: []
       end
 
       class Group
         include Virtus.model
 
-        attribute :children, Array[Section]
+        attribute :children, [Section]
         attribute :metadata, MetaData
         attribute :title, String
 
@@ -57,10 +57,10 @@ module DocTemplate
         attribute :level, Integer, default: 1
         attribute :time, Integer, default: ->(g, _) { g.metadata.time }
 
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, [Integer], default: []
       end
 
-      attribute :children, Array[Group]
+      attribute :children, [Group]
 
       def self.build_from(data) # rubocop:disable Metrics/AbcSize
         copy = Marshal.load Marshal.dump(data)
