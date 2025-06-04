@@ -1,24 +1,4 @@
 GIT
-  remote: https://github.com/learningtapestry/lt-google-api.git
-  revision: 15cb66366742649e629ccddd7001cf7bd4ebc672
-  branch: google-api-update-0.16
-  specs:
-    lt-google-api (0.3.1)
-      google-apis-drive_v3 (~> 0.63.0)
-      googleauth (~> 1.11.2)
-
-GIT
-  remote: https://github.com/learningtapestry/lt-lcms.git
-  revision: f4403a3b6befef09baa4c678811c319c05375a88
-  branch: google-api-update-0.16
-  specs:
-    lt-lcms (0.6.1)
-      google-apis-core (~> 0.16.0)
-      httparty (~> 0.18)
-      nokogiri (~> 1.10, >= 1.10.8)
-      rubyzip (~> 2)
-
-GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
   revision: 964a0906c9284d97927322e4c1e474b1d68373cf
   ref: 964a090
@@ -171,8 +151,8 @@ GEM
       activerecord (>= 5.0, < 6.2)
     acts_as_list (1.1.0)
       activerecord (>= 4.2)
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     airbrake (13.0.4)
       airbrake-ruby (~> 6.0)
     airbrake-ruby (6.2.2)
@@ -229,7 +209,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.4)
     bitly (1.1.2)
@@ -278,6 +258,7 @@ GEM
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
+    csv (3.3.5)
     daemons (1.4.1)
     database_cleaner (1.99.0)
     database_cleaner-active_record (1.99.0)
@@ -378,7 +359,7 @@ GEM
       google-apis-core (>= 0.15.0, < 2.a)
     google-apis-script_v1 (0.27.0)
       google-apis-core (>= 0.15.0, < 2.a)
-    google-cloud-env (2.1.0)
+    google-cloud-env (2.1.1)
       faraday (>= 1.0, < 3.a)
     googleauth (1.11.2)
       faraday (>= 1.0, < 3.a)
@@ -393,10 +374,12 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
-    httparty (0.21.0)
+    httparty (0.23.1)
+      csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    httpclient (2.8.3)
+    httpclient (2.9.0)
+      mutex_m
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -416,12 +399,22 @@ GEM
       railties (>= 4)
     json (2.6.2)
     jsonapi-renderer (0.2.2)
-    jwt (2.7.1)
+    jwt (2.10.2)
+      base64
     launchy (2.5.0)
       addressable (~> 2.7)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    lt-google-api (0.3.2)
+      google-apis-drive_v3 (~> 0.63.0)
+      googleauth (~> 1.11.2)
+    lt-lcms (0.6.1)
+      google-apis-core (~> 0.16.0)
+      httparty (~> 0.22)
+      lt-google-api (~> 0.3.2)
+      nokogiri (~> 1.10, >= 1.10.8)
+      rubyzip (~> 2)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
@@ -433,7 +426,7 @@ GEM
     mime-types-data (3.2023.1205)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
+    mini_portile2 (2.8.9)
     minitest (5.18.0)
     mono_logger (1.1.2)
     multi_json (1.15.0)
@@ -448,12 +441,12 @@ GEM
       nokogiri
       tzinfo
     nio4r (2.5.8)
-    nokogiri (1.15.5)
+    nokogiri (1.15.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.15.5-arm64-darwin)
+    nokogiri (1.15.7-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.15.7-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
@@ -492,9 +485,9 @@ GEM
       pry (>= 0.10.4)
     psych (4.0.6)
       stringio
-    public_suffix (5.0.4)
+    public_suffix (5.1.1)
     raabro (1.4.0)
-    racc (1.7.3)
+    racc (1.8.1)
     rack (2.2.6.3)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
@@ -610,7 +603,7 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
     sanitize (6.0.2)
@@ -641,7 +634,7 @@ GEM
     semantic_range (3.0.0)
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
-    signet (0.18.0)
+    signet (0.19.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
@@ -735,8 +728,8 @@ DEPENDENCIES
   factory_bot (~> 5)
   faker (~> 2.1)
   lcms-engine!
-  lt-google-api!
-  lt-lcms!
+  lt-google-api (~> 0.3.2)
+  lt-lcms (~> 0.6.1)
   overcommit (~> 0.57)
   pry-byebug (~> 3.7)
   pry-rails (~> 0.3.5)
@@ -755,4 +748,4 @@ DEPENDENCIES
   wicked_pdf!
 
 BUNDLED WITH
-   2.4.8
+   2.4.22

@@ -55,8 +55,11 @@ The project uses several Google products, including analytics, OAuth for allowin
 | GOOGLE_APPLICATION_TEMPLATE_PORTRAIT  | Id of the Google document which is a template for portrait materials(can be identified the same way as `GOOGLE_APPLICATION_FOLDER_ID `)                          |
 | GOOGLE_APPLICATION_TEMPLATE_LANDSCAPE | Id of the Google document which is a template for landscape materials(can be identified the same way as `GOOGLE_APPLICATION_FOLDER_ID `)                         |
 | GOOGLE_APPLICATION_PREVIEW_FOLDER_ID  | Folder ID where preview documents should get placed                                                                                                              |
-| GOOGLE_API_CLIENT_UPLOAD_RETRIES      ||     |
-| GOOGLE_API_CLIENT_UPLOAD_TIMEOUT      ||     |
+| GOOGLE_API_CLIENT_UPLOAD_RETRIES      | Number of retries on upload, default is 5 |     |
+| GOOGLE_API_CLIENT_UPLOAD_TIMEOUT      | Upload timeout, default is 60 seconds |     |
+| GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL      | Initial interval in seconds between tries for rate limit errors on upload, default is 2|     |
+| GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_INTERVAL | The maximum interval in seconds that any individual retry can reach, default is 300 | |
+| GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_ELAPSED_TIME      | The maximum amount of total time in seconds that code is allowed to keep being retried, default 900 (15 min)|     |
 
 ### Miscellaneous settings
 | Name                  | Description                                                                                                |

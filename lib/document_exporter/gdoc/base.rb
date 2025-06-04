@@ -12,10 +12,10 @@ module DocumentExporter
         options: {
           open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
           read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
-          retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
           send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
         }
       }.freeze
+      GOOGLE_API_RATE_RETRIABLE_ERRORS = [Google::Apis::ServerError, Google::Apis::RateLimitError].freeze
       VERSION_RE = /_v\d+$/i.freeze
 
       attr_reader :document, :options
@@ -52,7 +52,18 @@ module DocumentExporter
           upload_source: StringIO.new(content)
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
-        @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
+        # use general API settings for inner API call and wrap it with additional retry logic
+        @id = Retriable.retriable(base_interval: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL', 5).to_i,
+                                  multiplier: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MULTIPLIER', 2
+                                  ).to_f,
+                                  max_interval: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_INTERVAL', 300
+                                  ).to_i,
+                                  max_elapsed_time: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_ELAPSED_TIME',
+                                                              900).to_i,
+                                  on_retry: log_retries(file_id, metadata),
+                                  tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
           if file_id.present?
             drive_service.service.update_file(file_id, metadata, params)
           else
@@ -81,7 +92,17 @@ module DocumentExporter
           upload_source: StringIO.new(content)
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
-        @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
+        @id = Retriable.retriable(base_interval: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL', 5).to_i,
+                                  multiplier: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MULTIPLIER', 2
+                                  ).to_f,
+                                  max_interval: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_INTERVAL', 300
+                                  ).to_i,
+                                  max_elapsed_time: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_ELAPSED_TIME',
+                                                              900).to_i,
+                                  on_retry: log_retries(file_id, metadata),
+                                  tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
           if file_id.present?
             drive_service.service.update_file(file_id, metadata, params)
           else
@@ -138,6 +159,20 @@ module DocumentExporter
         @options[:subfolders] = [self.class::FOLDER_NAME]
         @id = drive_service.copy(file_ids)
         self
+      end
+
+      def log_retries(file_id, metadata)
+        proc do |exception, try, elapsed_time, next_interval|
+          msg = "#{exception.class}: '#{exception.message}' - #{try} tries in #{elapsed_time} seconds " \
+                "and #{next_interval} seconds until the next try. " \
+                "File ID: #{file_id}, Metadata: #{metadata.inspect}"
+          Rails.logger.error(msg)
+          if defined?(Airbrake) && ENV.fetch('AIRBRAKE_UPLOAD_ERRORS_NOTIFY', 'off') == 'on'
+            ::Airbrake.notify_sync(Airbrake.build_notice(msg)) do |notice|
+              notice[:context][:severity] = 'warning'
+            end
+          end
+        end
       end
 
       def post_processing

@@ -16,8 +16,8 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'lt-google-api', git: 'https://github.com/learningtapestry/lt-google-api.git', branch: 'google-api-update-0.16'
-gem 'lt-lcms', git: 'https://github.com/learningtapestry/lt-lcms.git', branch: 'google-api-update-0.16'
+gem 'lt-google-api', '~> 0.3.2'
+gem 'lt-lcms', '~> 0.6.1'
 
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support',
