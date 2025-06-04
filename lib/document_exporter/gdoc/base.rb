@@ -16,6 +16,7 @@ module DocumentExporter
           send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
         }
       }.freeze
+      GOOGLE_API_RATE_RETRIABLE_ERRORS = [Google::Apis::ServerError, Google::Apis::RateLimitError].freeze
       VERSION_RE = /_v\d+$/i
 
       attr_reader :document, :options
@@ -52,7 +53,15 @@ module DocumentExporter
           upload_source: StringIO.new(content)
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
-        @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
+        @id = Retriable.retriable(base_interval: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL', 5).to_i,
+                                  multiplier: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MULTIPLIER', 2
+                                  ).to_f,
+                                  max_interval: ENV.fetch(
+                                    'GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_INTERVAL', 900
+                                  ).to_i,
+                                  on: GOOGLE_API_RATE_RETRIABLE_ERRORS,
+                                  tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
           if file_id.present?
             drive_service.service.update_file(file_id, metadata, **params)
           else
