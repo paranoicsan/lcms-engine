@@ -14,7 +14,7 @@ module Lcms
             if id == '#'
               Lcms::Engine::Resource.tree.ordered.roots
             else
-              Array.wrap(Lcms::Engine::Resource.tree.find(id)&.children)
+              Array.wrap(Lcms::Engine::Resource.tree.find(id)&.children&.tree)
             end
 
           render json: resources.map { |res| CurriculumPresenter.new.parse_jstree_node(res) }

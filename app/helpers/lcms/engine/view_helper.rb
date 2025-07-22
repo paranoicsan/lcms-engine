@@ -105,7 +105,7 @@ module Lcms
 
       def selected_id?(id)
         selected_ids = params[:selected_ids]
-        return unless selected_ids.present?
+        return false unless selected_ids.present?
 
         case selected_ids
         when Array

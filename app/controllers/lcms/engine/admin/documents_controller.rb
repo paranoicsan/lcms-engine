@@ -127,10 +127,10 @@ module Lcms
 
         def set_query_params
           @query_params = params[:query]
-            &.permit(
-              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed, :reimport_required,
-              :search_term, :sort_by
-            ) || {}
+                            &.permit(
+                              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed,
+                              :reimport_required, :search_term, :sort_by
+                            ) || {}
         end
       end
     end

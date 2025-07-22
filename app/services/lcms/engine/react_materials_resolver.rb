@@ -23,7 +23,7 @@ module Lcms
                       else
                         JSON.parse(data)
                       end
-          node.remove && return if (raw_props['material_ids']).empty?
+          node.remove && return if raw_props['material_ids'].empty?
 
           props = PreviewsMaterialSerializer.new(raw_props, document)
           node.remove && return if props.data && props.data.empty?

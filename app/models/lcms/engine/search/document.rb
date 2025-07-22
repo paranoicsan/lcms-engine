@@ -22,10 +22,10 @@ module Lcms
         attribute :position, String
         attribute :slug, String
         attribute :subject, String
-        attribute :tag_authors, Array[String]
-        attribute :tag_keywords, Array[String]
-        attribute :tag_standards, Array[String]
-        attribute :tag_texts, Array[String]
+        attribute :tag_authors, [String]
+        attribute :tag_keywords, [String]
+        attribute :tag_standards, [String]
+        attribute :tag_texts, [String]
         attribute :teaser, String
         attribute :title, String
 

@@ -57,7 +57,7 @@ module Lcms
 
         {
           active: active_branch,
-          expanded: expanded? ? true : nil,
+          expanded: expanded? || nil,
           results: grades.map do |curr|
             CurriculumResourceSerializer.new(
               curr,

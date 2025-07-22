@@ -16,11 +16,10 @@ class RemoveSession
     # Don't delete the session cookie if:
     #   - We're in the process of logging in (breaks CSRF for sign in form)
     #   - We're logged in (needed for Devise)
-    skip_delete = (
+    skip_delete =
       path =~ %r{^/users} ||
       user_key.present? ||
       headers[SET_COOKIE].blank?
-    )
 
     signing_out = path == '/users/sign_out'
 

@@ -9,10 +9,10 @@ describe Lcms::Engine::HtmlSanitizer do
         <<-HTML
         <tbody>
           <tr>
-            <td colspan=\"2\" rowspan=\"1\">
+            <td colspan="2" rowspan="1">
               <p>
-                <span>d</span><sup><a href=\"#cmnt1\" id=\"cmnt_ref1\">[a]</a></sup><sup><a href=\"#cmnt2\"
-                id=\"cmnt_ref2\">[b]</a></sup><span>ocument-metadata</span><sup><a href=\"#cmnt3\" id=\"cmnt_ref3\">
+                <span>d</span><sup><a href="#cmnt1" id="cmnt_ref1">[a]</a></sup><sup><a href="#cmnt2"
+                id="cmnt_ref2">[b]</a></sup><span>ocument-metadata</span><sup><a href="#cmnt3" id="cmnt_ref3">
                 [c]</a></sup>
               </p>
             </td>
@@ -57,9 +57,9 @@ describe Lcms::Engine::HtmlSanitizer do
       it 'replace sup/sub aligned spans to sup/sub' do
         expect(subject).to include('80</sub>', '79</sup>', '24</sup>', '23</sub>', 'font-style')
         expect(subject).not_to include('vertical-align')
-        expect(subject.scan(/span/).size).to eq 10
-        expect(subject.scan(/sub/).size).to eq 4
-        expect(subject.scan(/sup/).size).to eq 4
+        expect(subject.scan('span').size).to eq 10
+        expect(subject.scan('sub').size).to eq 4
+        expect(subject.scan('sup').size).to eq 4
       end
     end
   end

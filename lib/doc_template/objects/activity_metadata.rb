@@ -35,14 +35,14 @@ module DocTemplate
         attribute :title, String, default: ->(a, _) { a.activity_title }
         attribute :time, Integer, default: ->(a, _) { a.activity_time }
 
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, [Integer], default: []
 
         def activity_standard_info
           standard_info [activity_standard, activity_mathematical_practice]
         end
       end
 
-      attribute :children, Array[Activity]
+      attribute :children, [Activity]
       attribute :idx, Integer
       attribute :task_counter, Hash[String => Integer], default: {} # rubocop:disable Style/HashConversion
 

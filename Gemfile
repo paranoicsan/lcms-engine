@@ -16,6 +16,9 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'lt-google-api', '~> 0.3.2'
+gem 'lt-lcms', '~> 0.6.1'
+
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support',
                   ref: '964a090'

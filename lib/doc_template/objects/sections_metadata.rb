@@ -10,7 +10,7 @@ module DocTemplate
         include Virtus.model
         include DocTemplate::Objects::MetadataHelpers
 
-        attribute :children, Array[DocTemplate::Objects::ActivityMetadata::Activity]
+        attribute :children, [DocTemplate::Objects::ActivityMetadata::Activity]
         attribute :summary, String
         attribute :time, Integer, default: 0
         attribute :title, String
@@ -22,7 +22,7 @@ module DocTemplate
         attribute :level, Integer, default: 1
         attribute :anchor, String, default: ->(a, _) { DocTemplate::Objects::MetadataHelpers.build_anchor_from(a) }
 
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, [Integer], default: []
 
         def add_activity(activity)
           self.time += activity.time.to_i
@@ -35,7 +35,7 @@ module DocTemplate
         end
       end
 
-      attribute :children, Array[Section]
+      attribute :children, [Section]
       attribute :idx, Integer
 
       def self.build_from(data, template_type)

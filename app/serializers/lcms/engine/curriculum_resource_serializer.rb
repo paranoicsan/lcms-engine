@@ -7,7 +7,7 @@ module Lcms
                  :resource,  :type, :unit_count, :unit_sizes
 
       def initialize(object, options = {})
-        super(object, options)
+        super
         @depth = options[:depth] || 0
         @depth_branch = options[:depth_branch]
       end

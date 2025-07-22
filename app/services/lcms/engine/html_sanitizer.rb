@@ -332,7 +332,7 @@ module Lcms
 
           css = ':not(.u-ld-not-image-wrap) > img:not([src*=googleapis]):not(.o-ld-icon):not(.o-ld-latex)'
           nodes.css(css).each do |img|
-            img = img.parent.replace(img) if img.parent.name == 'span' || img.parent.name == 'p'
+            img = img.parent.replace(img) if %w(span p).include?(img.parent.name)
             img.replace(%(
           <table class='o-simple-table o-ld-image-wrap--math'>
             <tr>
@@ -380,7 +380,7 @@ module Lcms
         def remove_empty_paragraphs(env)
           node = env[:node]
 
-          node.unlink if node.element? && (node.name == 'p' || node.name == 'span') && node.inner_html.squish.blank?
+          node.unlink if node.element? && %w(p span).include?(node.name) && node.inner_html.squish.blank?
         end
 
         # replace inline borders style with width = 0 as they're not processing correct for pdf
