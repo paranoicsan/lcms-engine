@@ -30,7 +30,7 @@ module Lcms
 
       attr_reader :material, :options
 
-      def assign_document
+      def assign_document # rubocop:disable Naming/PredicateMethod
         document = material.documents.last || Document.last
         unless document.present?
           @error = "Can't generate PDF for preview: no documents exist"
@@ -52,7 +52,7 @@ module Lcms
         raise 'GDoc generation failed. Please try again later'
       end
 
-      def generate_pdf
+      def generate_pdf # rubocop:disable Naming/PredicateMethod
         pdf_filename = "#{PDF_S3_FOLDER}/#{material.id}/#{material.base_filename}#{ContentPresenter::PDF_EXT}"
         pdf = DocumentExporter::Pdf::Material.new(material).export
         @url = S3Service.upload pdf_filename, pdf

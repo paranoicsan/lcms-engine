@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:13.7-alpine
+    image: postgres:15.13-alpine
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
@@ -14,7 +14,7 @@ services:
       - "6379"
 
   app:
-    image: learningtapestry/lcms-engine:ruby-3.2
+    image: learningtapestry/lcms-engine:ruby-3.2.9
     # to install all gems AND launch yarn
     command: bash -c "bundle install && yarn && tail -f /dev/null"
     # to install all gems ONLY

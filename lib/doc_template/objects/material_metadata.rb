@@ -5,6 +5,7 @@ module DocTemplate
     class MaterialMetadata
       include Virtus::InstanceMethods::Constructor
       include Virtus.model
+
       KEY_PARAMS = %w(breadcrumb_level sheet_type type).freeze
 
       attribute :activity, Integer

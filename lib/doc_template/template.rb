@@ -4,6 +4,7 @@ module DocTemplate
   class Template
     class TagRegistry
       include Enumerable
+
       delegate :delete, to: :@tags
 
       def initialize

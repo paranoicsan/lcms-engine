@@ -57,6 +57,11 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 10
 
+Naming/PredicateMethod:
+  AllowedMethods:
+    - call
+    - save
+
 Naming/MethodParameterName:
   MinNameLength: 2
 
@@ -84,3 +89,6 @@ Style/PercentLiteralDelimiters:
 
 Style/RescueModifier:
   Enabled: false
+
+Style/SafeNavigationChainLength:
+  Max: 3

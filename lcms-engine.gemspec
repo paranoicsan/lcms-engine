@@ -40,6 +40,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'ckeditor', '~> 5.1', '>= 5.1.3'
   s.add_dependency 'closure_tree', '~> 7.1'
   s.add_dependency 'combine_pdf', '~> 1.0'
+  # TODO: Stick to this version until upgrade to Rails 7.1 is done.
+  #       This dependency is used by ActiveSupport and others. Starting from 1.3.5
+  #       there is a breaking change which prevents steep from working properly.
+  s.add_dependency 'concurrent-ruby', '1.3.4'
   s.add_dependency 'cssbundling-rails', '~> 1.1'
   s.add_dependency 'devise', '~> 4.7', '>= 4.7.1'
   s.add_dependency 'elasticsearch-dsl', '~> 0.1.9'
@@ -52,10 +56,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'hiredis', '~> 0.6.3'
   s.add_dependency 'httparty', '~> 0.18'
   s.add_dependency 'jbuilder', '~> 2.10'
-  # NOTE: Moved to Gemfile temporary
-  # s.add_dependency 'lt-google-api', '~> 0.2', '>= 0.2.3'
-  # NOTE: Moved to Gemfile temporary
-  # s.add_dependency 'lt-lcms', '~> 0.5'
+  s.add_dependency 'lt-google-api', '~> 0.4'
+  s.add_dependency 'lt-lcms', '~> 0.7'
   s.add_dependency 'mini_magick', '~> 4.10', '>= 4.10.1'
   s.add_dependency 'nokogiri', '~> 1.12', '>= 1.12.0'
   s.add_dependency 'oj', '~> 3.10', '>= 3.10.2'
@@ -65,7 +67,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack-mini-profiler', '~> 2.3', '>= 2.3.3'
   s.add_dependency 'rails', '~> 7.0'
   s.add_dependency 'ransack', '~> 2.3', '>= 2.3.2'
-  s.add_dependency 'redis', '~> 4.1', '>= 4.1.3'
+  s.add_dependency 'redis', '~> 5.4.1'
   s.add_dependency 'resque', '~> 2.0', '>= 2.0.0'
   s.add_dependency 'resque-scheduler', '~> 4.4', '>= 4.4.0'
   s.add_dependency 'rest-client', '~> 2.1', '>= 2.1.0'
@@ -105,7 +107,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '< 0.18'
   s.add_development_dependency 'spring', '~> 3.1'
   s.add_development_dependency 'spring-commands-rspec', '~> 1.0'
-  s.add_development_dependency 'steep', '~> 1.0'
+  s.add_development_dependency 'steep', '~> 1.10.0'
   s.add_development_dependency 'traceroute', '~> 0.8'
   s.add_development_dependency 'webdrivers', '~> 4.0'
 end

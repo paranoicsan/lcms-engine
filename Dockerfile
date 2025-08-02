@@ -1,4 +1,4 @@
-FROM ruby:3.2.1
+FROM ruby:3.2.9
 
 ENV APP_PATH=/app/
 ENV LANG=C.UTF-8
@@ -11,14 +11,14 @@ RUN apt-get autoclean \
     && apt-get install -y --no-install-recommends \
       build-essential \
       chromium-driver \
-      postgresql-client-13 \
+      postgresql-client \
       shellcheck \
       tzdata \
     && rm -r /var/lib/apt/lists/* /var/cache/apt/*
 
 # install specific wkhtmltopdf binary
 RUN apt-get update -qqy \
-    && WK_VERSION=0.12.6.1-2 \
+    && WK_VERSION=0.12.6.1-3 \
     && ARCH=$(dpkg --print-architecture) \
     && CODENAME=$(. /etc/os-release; echo $VERSION_CODENAME) \
     && curl -LSfso wkhtmltopdf.deb https://github.com/wkhtmltopdf/packaging/releases/download/$WK_VERSION/wkhtmltox_$WK_VERSION.${CODENAME}_$ARCH.deb \
