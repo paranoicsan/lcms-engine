@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-gem update --system 3.4.12
+gem update --system "$(cat .codeship/rubygems-version)"
 gem install bundler:2.4.12
 
 bundle _2.4.12_ install
