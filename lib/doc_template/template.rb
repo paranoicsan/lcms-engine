@@ -100,8 +100,8 @@ module DocTemplate
         @documents[context_type].parts << {
           content: render(options),
           context_type:,
-          data: {},
-          materials: [],
+          data: {}, # : Hash[untyped, untyped]
+          materials: [], # : Array[untyped]
           optional: false,
           part_type: :layout,
           placeholder: nil

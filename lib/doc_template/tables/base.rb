@@ -7,9 +7,8 @@ module DocTemplate
 
       attr_reader :errors, :data
 
-      # @type method self.parse: (Nokogiri::HTML::DocumentFragment, ?(Integer | String, Hash[untyped, untyped])) -> self
-      def self.parse(fragment, *)
-        new.parse(fragment, *)
+      def self.parse(fragment, *args)
+        new.parse(fragment, args)
       end
 
       def self.flatten_table(table)
@@ -54,7 +53,7 @@ module DocTemplate
         fields.each do |field|
           (data[field] = []) && next if (row = data[field]).blank?
 
-          tags = row
+          tags = row.to_s
                    .split(opts[:separator].presence || SPLIT_REGEX)
                    .map(&:squish)
                    .reject(&:blank?)
@@ -73,7 +72,6 @@ module DocTemplate
         data
       end
 
-      # @type method parse: (Nokogiri::HTML::DocumentFragment, ?(Integer | String, Hash[untyped, untyped])) -> self
       def parse(fragment, *args)
         @options = args.extract_options!
 
@@ -103,11 +101,11 @@ module DocTemplate
       # @return [Hash] nested Hash for each of supported context types
       #
       def parse_in_context(content, opts = {})
-        # do not generate parts placeholder - inline all the tags
+        # do not generate part's placeholder - inline all the tags
         opts[:explicit_render] = true
         html = Nokogiri::HTML.fragment content
 
-        {}.tap do |result|
+        {}.tap do |result| # steep:ignore
           ::DocTemplate.context_types.each do |context_type|
             opts[:context_type] = context_type
             rendered_content = DocTemplate::Document.parse(html.dup, opts).render
@@ -135,7 +133,7 @@ module DocTemplate
       attr_reader :options, :table_exists
 
       def fetch(table)
-        {}.tap do |result|
+        {}.tap do |result| # steep:ignore
           table.xpath('.//tr[position() > 1]').each do |row|
             key = row.at_xpath('./td[1]')&.text.to_s.squish.downcase
             next if key.blank?

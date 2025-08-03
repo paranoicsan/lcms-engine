@@ -19,7 +19,7 @@ module DocTemplate
         tag_node = node
 
         # we have to collect all nodes until the we find the end tag
-        nodes = [].tap do |result|
+        nodes = [].tap do |result| # steep:ignore
           check_tag_soft_return(node)
           while (node = node.next_sibling)
             if node.content.match?(end_tag_re)

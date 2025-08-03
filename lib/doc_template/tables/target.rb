@@ -29,7 +29,7 @@ module DocTemplate
       private
 
       def fetch(table)
-        data = {}.tap do |result|
+        data = {}.tap do |result| # steep:ignore
           # Need to handle every `p` and `ul` elements
           result[:long_term_title] = table.xpath('*//tr[1]/td').map(&:content).join(' ')
           result[:long_term] = table.xpath('*//tr[2]/td/p').map(&:content).join('; ')

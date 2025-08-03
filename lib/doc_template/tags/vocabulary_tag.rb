@@ -16,9 +16,9 @@ module DocTemplate
       private
 
       def fetch_content(node)
-        [].tap do |result|
+        [].tap do |result| # steep:ignore
           # omit the first row
-          cur_section = {}
+          cur_section = {} # : Hash[Symbol, Array[Hash[untyped, untyped]]]
           node.xpath('.//tr[position() > 1]').each do |tr|
             if (td_header = tr.at_xpath "./td[@colspan = '2']")
               result << cur_section unless cur_section.empty?

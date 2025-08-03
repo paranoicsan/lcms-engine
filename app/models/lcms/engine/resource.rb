@@ -120,13 +120,19 @@ module Lcms
       # Define predicate methods for subjects.
       # I,e: #ela?, #math?, ..
       SUBJECTS.each do |subject_name|
-        define_method(:"#{subject_name}?") { subject == subject_name.to_s }
+        define_method(:"#{subject_name}?") do
+          # @type self: Lcms::Engine::Resource
+          subject == subject_name.to_s
+        end
       end
 
       # Define predicate methods for hierarchy levels.
-      # I,e: #subject?, #grade?, #lesson?, ...
+      # Sample: #subject?, #grade?, #lesson?, ...
       HIERARCHY.each do |level|
-        define_method(:"#{level}?") { curriculum_type.present? && curriculum_type.to_s.casecmp(level.to_s).to_i.zero? }
+        define_method(:"#{level}?") do
+          # @type self: Lcms::Engine::Resource
+          curriculum_type.present? && curriculum_type.to_s.casecmp(level.to_s).to_i.zero?
+        end
 
         # Define dynamic scopes for hierarchy levels.
         # I.e., `grades`, `units`, etc.
@@ -259,7 +265,7 @@ module Lcms
 
       def update_metadata
         meta = self_and_ancestors_not_persisted
-                 .each_with_object({}) do |r, obj|
+                 .each_with_object({}) do |r, obj| # steep:ignore
           obj[r.curriculum_type] = r.short_title
         end.compact
         metadata.merge! meta if meta.present?

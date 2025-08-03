@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump ruby to 3.2.9
 - [BREAKING] Update CKEditor version (see [CKEditor usage](docs/ckeditor-usage.md)) - [@paranoicsan](https://github.com/paranoicsan)
 - [BREAKING] Refactor query handling in admin controllers - [@paranoicsan](https://github.com/paranoicsan)
 - [BREAKING] Rename `import_status_for` to `import_status_for_nested` inside `Lcms::Engine::NestedReimportable` - [@paranoicsan](https://github.com/paranoicsan)

@@ -33,7 +33,7 @@ module DocTemplate
       end
 
       def prepare_content(image)
-        {}.tap do |result|
+        {}.tap do |result| # steep:ignore
           result[:src] = image['src']
 
           image['style'].split(';').each do |style|

@@ -93,10 +93,10 @@ module Lcms
       end
 
       def materials_anchors
-        {}.tap do |materials_with_anchors|
+        {}.tap do |materials_with_anchors| # steep:ignore
           toc.collect_children.each do |x|
             x.material_ids.each do |m|
-              materials_with_anchors[m] ||= { optional: [], anchors: [] }
+              materials_with_anchors[m] ||= { optional: [], anchors: [] } # steep:ignore
               materials_with_anchors[m][x.optional ? :optional : :anchors] << x.anchor
             end
           end

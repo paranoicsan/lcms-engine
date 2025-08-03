@@ -31,9 +31,9 @@ module DocTemplate
 
       def check_tag_soft_return: (untyped node) -> (nil | untyped)
 
-      def content_until_break: (untyped node) -> untyped
+      def content_until_break: (untyped node) -> String
 
-      def content_until_materials: (untyped node) -> untyped
+      def content_until_materials: (untyped node) -> String
 
       def gdoc?: (untyped opts) -> untyped
 

@@ -39,7 +39,7 @@ class StandardImporter
   end
 
   def find_grades(data)
-    grades = []
+    grades = [] # : Array[String]
 
     from_name, to_name = data.squish.downcase.split('-')
     grades << find_grade(from_name)
