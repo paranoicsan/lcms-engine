@@ -1,12 +1,11 @@
 GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
-  revision: c6d25b182d7cc10fcdfac0ae8a99edcd6e3c48ad
+  revision: 50d961ed2e0b48846d871a00471247ad7584d6fe
   ref: 50d961e
   branch: puppeteer-support
   specs:
     wicked_pdf (2.0.7)
       activesupport
-      retriable
 
 PATH
   remote: .
@@ -425,12 +424,13 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
-    mock_redis (0.48.1)
+    mock_redis (0.51.0)
+      redis (~> 5)
     mono_logger (1.1.2)
     multi_json (1.17.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
-    mustermann (3.0.3)
+    mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.3.0)
     net-http (0.6.0)
@@ -758,4 +758,4 @@ DEPENDENCIES
   wicked_pdf!
 
 BUNDLED WITH
-   2.4.12
+   2.5.22

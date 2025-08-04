@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 gem update --system "$(cat .codeship/rubygems-version)"
-gem install bundler:2.4.12
+gem install bundler:2.5.22
 
-bundle _2.4.12_ install
+bundle _2.5.22_ install
 
 rbs collection install
 rbs collection update
