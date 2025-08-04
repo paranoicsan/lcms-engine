@@ -79,7 +79,7 @@ module DocTemplate
       end
 
       def content_until_break(node)
-        [].tap do |result|
+        [].tap do |result| # steep:ignore
           check_tag_soft_return(node)
           while (sibling = node.next_sibling)
             break if include_break?(sibling)
@@ -91,7 +91,7 @@ module DocTemplate
       end
 
       def content_until_materials(node)
-        [].tap do |result|
+        [].tap do |result| # steep:ignore
           check_tag_soft_return(node)
           while (sibling = node.next_sibling)
             break if include_break_for?(sibling, 'stop_materials_tags')

@@ -347,6 +347,8 @@ module Lcms
         include GeneratedRelationMethods
         include _ActiveRecord_Relation[Lcms::Engine::LeadershipPost, Integer]
       end
+
+      def name: -> String
     end
   end
 end

@@ -960,6 +960,22 @@ module Lcms
         include _ActiveRecord_Relation[Lcms::Engine::Document, Integer]
         include Scopes
       end
+
+      def activate!: -> void
+      def assessment?: -> bool
+      def ela?: -> bool
+      def file_url: -> String?
+      def gdoc_material_ids: -> Array[Integer]
+      def materials_anchors: -> Hash[Integer, Hash[Symbol, Array[untyped]]]
+      def math?: -> bool
+      def ordered_material_ids: -> Array[Integer]
+      def tmp_link: (String key) -> String
+      def clean_curriculum_metadata: -> void
+
+      private
+
+      def destroy_connected_resource: -> void
+      def set_resource_from_metadata: -> void
     end
   end
 end

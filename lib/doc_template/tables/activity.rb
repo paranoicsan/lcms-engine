@@ -11,7 +11,7 @@ module DocTemplate
       def parse(fragment, *args)
         template_type = args.extract_options![:template_type].presence || 'core'
         idx = 0
-        [].tap do |result|
+        [].tap do |result| # steep:ignore
           fragment.xpath(xpath_meta_headers, XpathFunctions.new).each do |el|
             table = self.class.flatten_table(el.ancestors('table').first)
             data = fetch table

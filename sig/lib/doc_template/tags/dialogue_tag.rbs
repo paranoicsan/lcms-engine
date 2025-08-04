@@ -7,6 +7,9 @@ module DocTemplate
 
       TEMPLATES: { default: "dialogue.html.erb", gdoc: "gdoc/dialogue.html.erb" }
 
+      @opts: Hash[untyped, untyped]
+      @tags: Array[BaseTag]
+
       def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
 
       private

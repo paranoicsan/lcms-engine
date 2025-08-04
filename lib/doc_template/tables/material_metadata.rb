@@ -5,9 +5,9 @@ module DocTemplate
     class MaterialMetadata < Base
       CONFIG_PATH = Rails.root.join('config', 'materials_rules.yml')
       HEADER_LABEL = 'material-metadata'
-      HTML_VALUE_FIELDS = [].freeze
+      HTML_VALUE_FIELDS = [].freeze # steep:ignore
 
-      def parse(fragment, *_args)
+      def parse(fragment, *args)
         super
         if @data['sheet-type'].blank?
           @data['type'] ||= 'default'

@@ -10,9 +10,11 @@ module DocTemplate
         include Virtus.model
 
         attribute :anchor, String
-        attribute :children, Array[Heading], default: [] # rubocop:disable Style/RedundantArrayConstructor
+        # rubocop:disable Style/RedundantArrayConstructor
+        attribute :children, Array[Heading], default: [] # steep:ignore
+        # rubocop:enable Style/RedundantArrayConstructor
         attribute :level, Integer
-        attribute :material_ids, Array, default: []
+        attribute :material_ids, Array, default: [] # steep:ignore
         attribute :optional, Virtus::Attribute::Boolean, default: false
         attribute :priority, Integer, default: 0
         attribute :standard, String, default: ''
@@ -46,7 +48,9 @@ module DocTemplate
         end
       end
 
-      attribute :children, Array[Heading], default: [] # rubocop:disable Style/RedundantArrayConstructor
+      # rubocop:disable Style/RedundantArrayConstructor
+      attribute :children, Array[Heading], default: [] # steep:ignore
+      # rubocop:enable Style/RedundantArrayConstructor
       attribute :priority, Integer, default: 0
       attribute :total_time, Integer, default: ->(t, _) { t.children.sum(&:time) }
 
@@ -74,7 +78,7 @@ module DocTemplate
       end
 
       def ordered_material_ids
-        [].tap do |ids|
+        [].tap do |ids| # steep:ignore
           children.each do |x|
             ids.concat x.material_ids
             ids.concat x.children.flat_map(&:material_ids)

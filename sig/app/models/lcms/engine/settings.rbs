@@ -44,9 +44,9 @@ module Lcms
 
         def clear_id_change: () -> void
 
-        def data: () -> untyped
+        def data: -> Hash[String, untyped]
 
-        def data=: (untyped) -> untyped
+        def data=: (Hash[String, untyped]) -> untyped
 
         def data?: () -> bool
 

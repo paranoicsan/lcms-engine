@@ -11,10 +11,10 @@ module DocTemplate
       def parse(fragment, *args)
         section_tables = fragment.xpath(xpath_meta_headers, XpathFunctions.new)
 
-        # # Allows to handle ELA as Math:: inject fake section
+        # # Allows handling ELA as Math:: inject a fake section
         return fake_section(fragment) if section_tables.empty? && args.extract_options![:force_inject]
 
-        [].tap do |result|
+        [].tap do |result| # steep:ignore
           section_tables.each do |el|
             table = self.class.flatten_table(el.ancestors('table').first)
             data = fetch table

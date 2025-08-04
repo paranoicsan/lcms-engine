@@ -1246,10 +1246,9 @@ module Lcms
         include Scopes
       end
 
-      # Are used to bypass dynamic define_method call
-      def self.curriculum_type: -> String?
-      def self.subject: -> String?
-      def self.subjects: -> ActiveRecord_Associations_CollectionProxy
+      @directory: Array[untyped]
+      @lesson_number: Integer
+      @related_resources: (ActiveRecord_Associations_CollectionProxy | Array[untyped])
 
       # to bypass gems
       def self.acts_as_taggable_on: (*untyped) -> untyped
@@ -1270,11 +1269,11 @@ module Lcms
       def assessment?: -> untyped
       def media?: -> untyped
       def generic?: -> untyped
-      def directory: -> untyped
-      def subject: -> untyped
+      def directory: -> Array[untyped]
+      def subject: -> String?
       def grades: -> ::Lcms::Engine::Grades
       def grades=: (untyped gds) -> untyped
-      def lesson_number: -> untyped
+      def lesson_number: -> Integer
       def pdf_downloads?: (?untyped? category) -> untyped
       def named_tags: -> { keywords: untyped, resource_type: untyped, ell_appropriate: untyped, ccss_standards: untyped, ccss_domain: nil, ccss_cluster: nil, authors: untyped, texts: untyped }
       def filtered_named_tags: -> untyped
@@ -1306,6 +1305,15 @@ module Lcms
 
       # closure_tree
       def self.has_closure_tree: (*untyped) -> untyped
+
+      private
+
+      def destroy_additional_resources: -> void
+      def update_descendants_author: -> void
+      def update_descendants_meta: -> void
+      def update_descendants_position: -> void
+      def update_descendants_tree: -> void
+      def update_slug: -> void
     end
   end
 end

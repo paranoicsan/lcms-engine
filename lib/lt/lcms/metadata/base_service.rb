@@ -15,7 +15,8 @@ module Lt
           def options_for(context)
             raise 'Metadata is empty' unless metadata.present?
 
-            {}.tap do |result|
+            {}.tap do |result| # steep:ignore
+              # @type var result: Hash[untyped, untyped]
               result.merge!(lesson_options) unless material?
               result[:context_type] = context
             end

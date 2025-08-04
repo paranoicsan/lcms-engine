@@ -9,7 +9,8 @@ module Lcms
         end
 
         def []=(key, value)
-          settings.update data: settings.data.merge(key.to_s => value)
+          new_settings = {}.tap { _1[key.to_s] = value } # steep:ignore
+          settings.update data: settings.data.merge(new_settings)
         end
 
         private

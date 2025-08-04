@@ -23,10 +23,10 @@ module DocTemplate
         attribute :level, Integer, default: 1
         attribute :anchor, String, default: ->(a, _) { DocTemplate::Objects::MetadataHelpers.build_anchor_from(a) }
 
-        attribute :material_ids, Array, default: []
+        attribute :material_ids, Array, default: [] # steep:ignore
 
         def add_activity(activity)
-          self.time += activity.time.to_i
+          self.time += Integer(activity.time)
           activity.handled = true
           children << activity
         end
@@ -46,7 +46,8 @@ module DocTemplate
 
       def add_break
         idx = children.index { |c| !c.handled } || -1
-        section = Section.new(title: 'Foundational Skills Lesson', anchor: 'optbreak', time: 0, children: [])
+        section =
+          Section.new(title: 'Foundational Skills Lesson', anchor: 'optbreak', time: 0, children: []) # steep:ignore
         children.insert(idx - 1, section)
       end
     end

@@ -37,7 +37,7 @@ module DocTemplate
       # TODO: Extract to the parent class
       def fetch_data(source)
         @preserved_style = %r{<span (style=[^.>]*)>[^<]+</span>$}.match(source).try(:[], 1)
-        {}.tap do |result|
+        {}.tap do |result| # steep:ignore
           data = source.squish
                    .sub(TAG_RE, TAG_SEPARATOR)
                    .split(TAG_SEPARATOR, 2)

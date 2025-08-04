@@ -11,7 +11,7 @@ module DocTemplate
 
       private
 
-      def fetch_content: (untyped node) -> ::Array[untyped]
+      def fetch_content: (untyped node) -> ::Array[String]
     end
   end
 end

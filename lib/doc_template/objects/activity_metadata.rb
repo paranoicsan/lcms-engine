@@ -36,12 +36,12 @@ module DocTemplate
         attribute :title, String, default: ->(a, _) { a.activity_title }
         attribute :time, Integer, default: ->(a, _) { a.activity_time }
 
-        attribute :material_ids, Array, default: []
+        attribute :material_ids, Array, default: [] # steep:ignore
       end
 
       attribute :children, Array[Activity] # rubocop:disable Style/RedundantArrayConstructor
       attribute :idx, Integer
-      attribute :task_counter, Hash, default: {}
+      attribute :task_counter, Hash, default: {} # steep:ignore
 
       def self.build_from(data)
         copy = Marshal.load Marshal.dump(data)

@@ -13,13 +13,13 @@ module DocTemplate
 
       attr_reader data: untyped
 
-      def self.parse: (untyped fragment, *untyped) -> untyped
+      def self.parse: (Nokogiri::HTML::DocumentFragment fragment, *untyped) -> untyped
       def self.flatten_table: (untyped table) -> untyped
 
       def initialize: () -> void
-      def collect_and_render_tags: (untyped data, untyped fields, ?::Hash[untyped, untyped] opts) -> untyped
-      def parse: (untyped fragment, *untyped args) -> self
-      def parse_in_context: (untyped content, ?::Hash[untyped, untyped] opts) -> untyped
+      def collect_and_render_tags: (Hash[String, Array[String]] data, Array[String] fields, ?::Hash[untyped, untyped] opts) -> Hash[String, Array[String]]
+      def parse: (Nokogiri::HTML::DocumentFragment fragment, *untyped args) -> untyped
+      def parse_in_context: (untyped content, ?::Hash[untyped, untyped] opts) -> Hash[Symbol, String]
       def fetch_materials: (untyped data, untyped key) -> untyped
       def table_exist?: () -> untyped
 
