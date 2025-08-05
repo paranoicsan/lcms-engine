@@ -1,4 +1,4 @@
-FROM ruby:3.2.9
+FROM ruby:3.3.8
 
 ENV APP_PATH=/app/
 ENV LANG=C.UTF-8
@@ -9,11 +9,11 @@ RUN apt-get autoclean \
     && apt-get clean \
     && apt-get update -qqy \
     && apt-get install -y --no-install-recommends \
-      build-essential \
-      chromium-driver \
-      postgresql-client \
-      shellcheck \
-      tzdata \
+    build-essential \
+    chromium-driver \
+    postgresql-client \
+    shellcheck \
+    tzdata \
     && rm -r /var/lib/apt/lists/* /var/cache/apt/*
 
 # install specific wkhtmltopdf binary
@@ -30,8 +30,8 @@ RUN apt-get update -qqy \
 COPY . $APP_PATH
 
 # Install gems
-RUN gem update --system 3.4.12 \
-    && gem install bundler:2.4.12 \
+ENV BUNDLER_VERSION=2.5.22
+RUN gem install bundler:$BUNDLER_VERSION \
     && bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 \
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
