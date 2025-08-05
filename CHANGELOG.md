@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump ruby to 3.3.9
 - Bump ruby to 3.3.8
 - Bump ruby to 3.2.9
 - [BREAKING] Update CKEditor version (see [CKEditor usage](docs/ckeditor-usage.md)) - [@paranoicsan](https://github.com/paranoicsan)
