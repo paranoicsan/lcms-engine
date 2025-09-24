@@ -24,14 +24,14 @@ module DocTemplate
       #
       # There can be situations when Google Document is exported
       # in a broken way:
-      #   <span>[imag</span><span>e: OP.LE.L1.004</span><span>]
+      #   <span>[imag</span><span style='font-family:"Montserrat"'>e: OP.LE.L1.004</span><span>]
       # In this case we need to guess the part which should be substituted
       #
       # As a result for the tag with name `image` will be the following
       #   [
-      #     /\[[^\]]*image[[^:,;.]]*(<\/span><span\s?[^>]>)?:?\s?[^\]]*\]/i,
-      #     /\[[^\]]*imag[[^:,;.]]*(<\/span><span\s?[^>]>)?e:?\s?[^\]]*\]/i,
-      #     /\[[^\]]*ima[[^:,;.]]*(<\/span><span\s?[^>]>)?ge:?\s?[^\]]*\]/i
+      #     /\[[^\]]*image[[^:,;.]]*(<\/span>\s*<span\s?[^>]*>)?:?\s?[^\]]*\]/i,
+      #     /\[[^\]]*imag[[^:,;.]]*(<\/span>\s*<span\s?[^>]*>)?e:?\s?[^\]]*\]/i,
+      #     /\[[^\]]*ima[[^:,;.]]*(<\/span>\s*<span\s?[^>]*>)?ge:?\s?[^\]]*\]/i
       #   ]
       #
       # @param [Integer] min_char Minimum number of character by which we guess the tag
@@ -46,7 +46,7 @@ module DocTemplate
               first_part = tag_name[0..idx]
               last_part = tag_name[(idx + 1)..]
 
-              %r{\[[^\]]*#{first_part}[[^:,;.]]*(</span><span\s?[^>]>)?#{last_part}:?\s?[^\]]*\]}i
+              %r{\[[^\]]*#{first_part}[[^:,;.]]*(</span>\s*<span\s?[^>]*>)?#{last_part}:?\s?[^\]]*\]}i
             end
           end
       end
